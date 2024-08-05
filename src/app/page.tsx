@@ -112,10 +112,8 @@ export default function Home() {
     //     </a>
     //   </div>
     // </main>
-    <main>
-      <div id="root">
-        <App />
-      </div>
-    </main>
+    <div id="root">
+      <App />
+    </div>
   );
 }

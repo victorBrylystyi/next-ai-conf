@@ -11,11 +11,25 @@ const loadingFn = () =>
             message
         }
 
-        return fetch('/api/text2img', {
+        // const imgUrl = await fetch('/api/text2img', {
+        //     method: 'POST',
+        //     body: JSON.stringify(request)
+        // })
+        // .then(async (resp: Response) => resp.blob().then(blob => URL.createObjectURL(blob)))
+
+        return fetch('/api/img2mesh', {
             method: 'POST',
-            body: JSON.stringify(request)
+            body: JSON.stringify({
+                data: 'hi'
+            })
         })
-        .then(async (resp: Response) => resp.blob().then(blob => URL.createObjectURL(blob)))
+        .then((resp: Response) => {
+            console.log(resp)
+            return resp.json()
+        })
+        .then((json) => {
+            return json.result as string
+        })
 
     }
 

@@ -8,8 +8,6 @@ export const state = proxy<StoreType>({
     entities: []
 });
 
-let a = 1;
-
 export const createEntity = (id:string) => {
     state.entities.push(id);
 };

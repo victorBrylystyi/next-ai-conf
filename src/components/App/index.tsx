@@ -20,36 +20,36 @@ const Controls = () => {
             <OrbitControls makeDefault />
         </>
     );
-}
+};
 
 export const App = () => {
 
     const colorRef = useRef(new Color(0.5, 0.5, 1));
 
-    useEffect(() => { // get
-        fetch('/api/hello?id=next123')
-        .then((resp) => {
-            return resp.json()
-        })
-        .then((json) => {
-            console.log(json)
-        })
-    }, []);
+    // useEffect(() => { // get
+    //     fetch('/api/hello?id=next123')
+    //     .then((resp) => {
+    //         return resp.json()
+    //     })
+    //     .then((json) => {
+    //         console.log(json)
+    //     })
+    // }, []);
 
-    useEffect(() => { // post
-        fetch('/api/hello', {
-            method: 'POST',
-            body: JSON.stringify({
-                data: 'hi'
-            })
-        })
-        .then((resp) => {
-            return resp.json()
-        })
-        .then((json) => {
-            console.log(json)
-        })
-    }, []);
+    // useEffect(() => { // post
+    //     fetch('/api/img2mesh', {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+    //             data: 'hi'
+    //         })
+    //     })
+    //     .then((resp: Response) => {
+    //         return resp.json()
+    //     })
+    //     .then((json) => {
+    //         console.log(json)
+    //     })
+    // }, []);
 
     return <>
         <Canvas>
