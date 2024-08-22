@@ -12,18 +12,18 @@ export async function GET(request: Request) {
 };
 
 
-export async function POST(req: Request) {
-    const body = await req.json();
-    // const response = await openai.chat.completions.create({
-    //   model: 'gpt-3.5-turbo',
-    //   stream: true,
-    //   messages,
-    // })
+// export async function POST(req: Request) {
+//     const body = await req.json();
+//     // const response = await openai.chat.completions.create({
+//     //   model: 'gpt-3.5-turbo',
+//     //   stream: true,
+//     //   messages,
+//     // })
    
-    // const stream = OpenAIStream(response)
+//     // const stream = OpenAIStream(response)
    
-    return Response.json({ 
-        body
-     })
-  }
+//     return Response.json({ 
+//         body
+//      })
+//   }
 

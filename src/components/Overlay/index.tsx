@@ -5,11 +5,13 @@ import { useCallback, useState } from "react";
 import { MathUtils } from "three";
 import { state, createNewMsg, createEntity, updateMsg } from "@/store";
 
+
 export const Overlay = () => {
 
     const [msg, setMsg] = useState('');
 
     const postMessageHandle = useCallback(() => {
+        console.log('postMessageHandle');
 
         const messageId = MathUtils.generateUUID();
 
@@ -25,18 +27,18 @@ export const Overlay = () => {
 
         setMsg('');
 
-        fetch('/api/img2mesh', {
+        fetch('/api/text2img', {
             method: 'POST',
             body: JSON.stringify({
-                message: msg
+                message: msg,
             })
         })
-        .then((resp: Response) => {
-            return resp.json()
-        })
-        .then((json) => {
+        .then(resp => resp.blob())
+        .then((blob) => {
+            console.log(blob)
+            const url = URL.createObjectURL(blob); 
             updateMsg(messageId, {
-                model: json.result as string
+                image: url,
             })
         })
 

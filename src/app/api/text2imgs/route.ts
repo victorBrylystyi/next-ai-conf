@@ -13,23 +13,29 @@ import { Client } from "@gradio/client";
 import { RequestImg2MeshType, RequestText2ImgType } from "@/helpers/types";
 import { HfInference } from "@huggingface/inference";
 
-// const hf = new HfInference(process.env.REACT_APP_MY_TOKEN);
+const hf = new HfInference(process.env.REACT_APP_MY_TOKEN);
 
 export async function POST(request: Request) {
 
     const req = await request.json() as RequestText2ImgType;
 
-    // const exampleImage0 = await hf.textToImage({
-    //     inputs: req.message,
-    //     model: 'stabilityai/stable-diffusion-2',
-    //     parameters: {
-    //         negative_prompt: 'blurry',
-    //     }
-    //     }, {
-    //         // wait_for_model: true,
-    //     }
+    // if (req.flag) {
+
+    // } else {
         
-    // );
+    // }
+
+    const exampleImage0 = await hf.textToImage({
+        inputs: req.message,
+        model: 'stabilityai/stable-diffusion-2',
+        parameters: {
+            negative_prompt: 'blurry',
+        }
+        }, {
+            // wait_for_model: true,
+        }
+        
+    );
 
     // const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
     // const exampleImage0 = await response_0.blob();
@@ -41,32 +47,32 @@ export async function POST(request: Request) {
     // ]);
 
     // const url = ((result.data as unknown[])[0] as unknown as {url: string}).url as unknown as string
-    console.log(req.message);
-    const response_1 = await fetch(req.message);
-    const exampleImage1 = await response_1.blob();
+    // const response_1 = await fetch(url);
+    // const exampleImage1 = await response_1.blob();
 
-    // const result2 = await app.predict("/generate_mvs", [
-    //     exampleImage0, 	// blob in 'Processed Image' Image component		
-    //     42, // number (numeric value between 30 and 75) in 'Sample Steps' Slider component		
-    //     50, // number  in 'Seed Value' Number component
-    // ]);
+    const result2 = await app.predict("/generate_mvs", [
+        exampleImage0, 	// blob in 'Processed Image' Image component		
+        42, // number (numeric value between 30 and 75) in 'Sample Steps' Slider component		
+        50, // number  in 'Seed Value' Number component
+    ]);
 
-    // const url3 = ((result2.data as unknown[])[0] as unknown as {url: string}).url as unknown as string
-    // console.log(result2.data)
-    // const response_3 = await fetch(url3);
-    // const exampleImage3 = await response_3.blob();
-    console.log(exampleImage1);
+    const url3 = ((result2.data as unknown[])[0] as unknown as {url: string}).url as unknown as string
+    console.log(result2.data)
+    const response_3 = await fetch(url3);
+    const exampleImage3 = await response_3.blob();
+
     const result3 = await app.predict("/make3d", [
-        exampleImage1
+        exampleImage3
 	]);
 
     
 
-    console.log(result3);
+console.log(result3);
 
     // return new Response(result3 as unknown as BodyInit);
     return Response.json({
-        result: ((result3.data as unknown[])[1] as unknown as {url: string}).url as unknown as string
-        // result: url3
+        result: ((result3.data as unknown[])[1] as unknown as {url: string}).url as unknown as string,
+        resultImg: url3
+        // resultImg: url3
     })
 };

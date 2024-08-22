@@ -8,6 +8,7 @@ import { useSnapshot } from "valtio";
 import { state } from "@/store";
 import { Board } from "../Board";
 import { Overlay } from "../Overlay";
+import { KeyBoardControll } from "../KeyboardControll";
 
 const Controls = () => {
 
@@ -18,6 +19,7 @@ const Controls = () => {
         <>
             {selected && <TransformControls object={scene.getObjectByName(selected)} />}
             <OrbitControls makeDefault />
+            {/* <KeyBoardControll /> */}
         </>
     );
 };
@@ -50,6 +52,9 @@ export const App = () => {
     //         console.log(json)
     //     })
     // }, []);
+    // const { data, error, isLoading } = useSWR('/api/hello', fetcher)
+
+    // useEffect(() => {console.log(data)}, [data])
 
     return <>
         <Canvas>

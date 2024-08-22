@@ -24,6 +24,7 @@ export type StoreType = {
 
 export type RequestText2ImgType = {
     message: string
+    flag: boolean
 }
 
 export type RequestImg2MeshType = {
